@@ -35,9 +35,10 @@ export default function Home() {
 
   const calculateScores = () => {
     const score = (questions) => {
-      const total = questions.reduce((acc, q) => acc + (answers[q.id] ?? 0), 0);
-      return Math.round(100 - (total / ((questions.length * (q => q.options.length - 1)(questions[0])))) * 100);
-    };
+  const max = questions.length * (questions[0].options.length - 1);
+  const total = questions.reduce((acc, q) => acc + (answers[q.id] ?? 0), 0);
+  return Math.round(100 - (total / max) * 100);
+};
 
     return {
       koosScore: score(questionsKOOS),
